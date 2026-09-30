@@ -2,17 +2,22 @@
 
 ## Project description
 
-This project demonstrates modern JavaScript (ES6+) fundamentals: higher-order
-functions, closures, deep cloning, memoization, private class fields,
-inheritance, and unit testing. It is a Node.js project with no DOM, HTML, CSS,
-or frontend framework.
+I created this project to practise JavaScript functions, closures, classes,
+inheritance, and unit testing. I wrote it for Node.js, without using the DOM,
+HTML, CSS, or frontend frameworks.
 
 ## Technologies
 
-- JavaScript ES6+
-- Node.js
-- npm
-- Vitest
+- I used **JavaScript ES6+** to write the functions and classes. I used array
+  methods, spread syntax, closures, private fields, and inheritance.
+- I used **Node.js** to run the project outside a browser.
+- I used **npm** to install Vitest and run the commands configured in
+  `package.json`.
+- I used **Vitest** to write and run the unit tests in `tests/`.
+- I used **Visual Studio Code** to edit the files and run commands in its
+  integrated terminal.
+
+I did not use the browser DOM, HTML, CSS, or frontend frameworks.
 
 ## Project structure
 
@@ -29,41 +34,38 @@ js-core/
 └── .gitignore
 ```
 
-## Installation and test commands
-
-Open the `js-core` folder in Visual Studio Code, open its integrated terminal,
-and install the development dependencies:
-
-```bash
-npm install
-```
-
-Run all unit tests once:
-
-```bash
-npm test
-```
-
-Run Vitest in watch mode:
-
-```bash
-npm run test:watch
-```
 
 ## Implemented functions
 
-- `unique(arr)` returns a new ordered array without duplicate values.
-- `groupBy(arr, keyFn)` groups items by a key calculated by `keyFn`.
-- `chunk(arr, size)` splits an array into fixed-size chunks.
-- `deepClone(obj)` recursively clones objects, arrays, dates, maps, sets, and
-  circular references.
-- `memoize(fn)` caches results using a closure and a nested `Map` cache.
-- `counter()` creates an independent counter with `inc`, `dec`, and `value`
-  methods.
+I implemented these six functions in `src/functions.js`:
+
+- `unique(arr)` returns a new array with duplicates removed while preserving
+  the original order.
+- `groupBy(arr, keyFn)` uses `keyFn` to calculate a key for each item and
+  collects items with the same key into groups.
+- `chunk(arr, size)` splits an array into chunks and rejects sizes that are
+  zero, negative, or not integers.
+- `deepClone(obj)` recursively copies objects and arrays without using JSON
+  serialization. It also handles circular references, dates, maps, and sets.
+- `memoize(fn)` uses a closure and nested `Map` objects to cache results for
+  calls with the same arguments.
+- `counter()` uses a closure to keep its value private and returns `inc`, `dec`,
+  and `value` methods.
 
 ## Implemented classes
 
-- `Store` stores items with an `id`, supports adding, removing, finding, and
-  counting items, and uses a private field for its data.
-- `SortedStore` extends `Store`, calls `super.add`, and keeps items sorted by a
-  selected field after each addition.
+I implemented `Store` in `src/Store.js`. It stores items in a private `#items`
+field and provides methods to add, remove, find, and count items. I added the
+`count` getter and the static `Store.from()` factory method.
+
+I made `SortedStore` extend `Store`. I overrode `add()`, called `super.add()`
+to reuse the parent validation and insertion logic, and then sorted the stored
+items by the selected field.
+
+## Tests
+
+I wrote 17 unit tests in `tests/`. They cover the functions and classes,
+including empty arrays, invalid input, invalid chunk sizes, missing items,
+duplicate values, caching, deep-copy independence, and sorting. I ran them
+with `npm test`.
+<img width="1039" height="383" alt="image" src="https://github.com/user-attachments/assets/e0378f5f-e39c-45eb-8fb5-f39c78e1f750" />
